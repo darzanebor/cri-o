@@ -1,0 +1,23 @@
+---
+- include_tasks: "{{ ansible_distribution }}.yaml"
+
+- name: Routine
+  block:
+    - name: Install crictl
+      unarchive:
+        src: "https://github.com/kubernetes-sigs/cri-tools/releases/download/{{ crio_ctl_version }}/crictl-{{ crio_ctl_version }}-linux-amd64.tar.gz"
+        dest: /usr/bin
+        remote_src: yes
+    
+    - name: Enable kernel modules
+      modprobe:
+        name: "{{ item }}"
+        state: present
+      with_items: "{{ crio_kernel_modules }}"
+    
+    - name: Start and enable CRI-O
+      systemd:
+        name: crio
+        state: started
+        enabled: true
+  become: true

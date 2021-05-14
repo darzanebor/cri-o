@@ -1,0 +1,22 @@
+---
+galaxy_info:
+  author: darzanebor
+  description: Install cri-o and crictl
+  license: GNU
+  min_ansible_version: 2.9
+  platforms:
+    - name: Ubuntu
+      versions:
+        - focal
+        - eoan
+        - disco
+        - bionic
+    - name: EL
+      versions:
+        - 7
+        - 8
+  galaxy_tags:
+    - crio
+    - k8s
+    - container runtime
+dependencies: []

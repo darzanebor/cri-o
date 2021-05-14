@@ -1,0 +1,35 @@
+---
+crio_kernel_modules:
+  - overlay
+  - br_netfilter
+
+crio_version: '1.20'
+
+crio_ctl_version: 'v1.21.0'
+
+crio_ubuntu_packages:
+- cri-o
+- cri-o-runc
+
+crio_rhel_packages:
+- cri-o
+
+crio_ubuntu_repos:
+- name: 'devel:kubic:libcontainers:stable'
+  url: "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/x{{ ansible_distribution }}_{{ ansible_distribution_version }}/ /"
+  gpg: "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/x{{ ansible_distribution }}_{{ ansible_distribution_version }}/Release.key"
+  description: "libcontainers"
+- name: 'devel:kubic:libcontainers:stable:cri-o:{{ crio_version }}'
+  url: "deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/{{ crio_version }}/x{{ ansible_distribution }}_{{ ansible_distribution_version }}/ /"
+  gpg: "https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:{{ crio_version }}/x{{ ansible_distribution }}_{{ ansible_distribution_version }}/Release.key"
+  description: "crio"
+
+crio_rhel_repos:
+- name: 'devel:kubic:libcontainers:stable'
+  url: "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/{{ ansible_distribution }}_{{ ansible_distribution_major_version }}/"
+  gpg: "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/{{ ansible_distribution }}_{{ ansible_distribution_major_version }}/repodata/repomd.xml.key"
+  description: "libcontainers"
+- name: 'devel:kubic:libcontainers:stable:cri-o:{{ crio_version }}'
+  url: "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/{{ crio_version }}/{{ ansible_distribution }}_{{ ansible_distribution_major_version }}/"
+  gpg: "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/{{ crio_version }}/{{ ansible_distribution }}_{{ ansible_distribution_major_version }}/repodata/repomd.xml.key"
+  description: "crio"

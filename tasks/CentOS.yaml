@@ -1,0 +1,19 @@
+---
+- name: Install cri-o CentOS
+  block:
+    - name: Enable CRI-O repository
+      yum_repository:
+        name: "{{ item.name }}"
+        description: "{{ item.description }}"
+        baseurl: "{{ item.url }}"
+        gpgkey: "{{ item.gpg }}"
+        gpgcheck: yes
+      with_items: 
+      - "{{ crio_rhel_repos }}"
+    
+    - name: Install CRI-O
+      yum:
+        name: "{{ crio_rhel_packages }}"
+        state: latest
+        update_cache: true
+  become: true

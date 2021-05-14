@@ -1,0 +1,23 @@
+---
+- name: Install cri-o Ubuntu
+  block:
+    - name: Import cri-o keys
+      apt_key:
+        url: "{{ item.gpg }}"
+        state: present
+      with_items: 
+      - "{{ crio_ubuntu_repos }}"
+    
+    - name: Enable CRI-O repository
+      apt_repository:
+        repo: "{{ item.url }}"
+        state: present
+      with_items: 
+      - "{{ crio_ubuntu_repos }}"
+    
+    - name: Install CRI-O
+      apt:
+        name: "{{ crio_ubuntu_packages }}"
+        state: latest
+        update_cache: true
+  become: true
