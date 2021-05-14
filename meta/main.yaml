@@ -17,6 +17,7 @@ galaxy_info:
         - 8
   galaxy_tags:
     - crio
+    - containers
+    - runtime
     - k8s
-    - container runtime
 dependencies: []
