@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: darzanebor
-  description: Install cri-o and crictl
+  description: Ansible role for installation of cri-o and crictl
   license: GNU
   min_ansible_version: 2.9
   platforms:
@@ -11,7 +11,7 @@ galaxy_info:
         - eoan
         - disco
         - bionic
-    - name: EL
+    - name: CentOS
       versions:
         - 7
         - 8
